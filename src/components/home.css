@@ -1956,6 +1956,7 @@ body {
   border-radius: 20px;
   /* background-color: #1a1a2e; */
   z-index: 1;
+  padding: 40px;
 }
 
 .main-content-area::before {

@@ -6,7 +6,7 @@ import LandingPage from './components/LandingPage';
 import DashboardPage from './components/Dashboard';
 import Profile from './components/profile';
 import SupportPage from './components/SupportPage';
-import Home from './components/home';
+import Homepage from './components/home';
 import Dashpage from './components/dash';
 import Earnpage from './components/earn';
 import Manage from './components/manage';
@@ -22,12 +22,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/LandingPage" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/SupportPage" element={<SupportPage/>} />
-        
+        <Route path="/home" element={<Homepage/>}/>
         <Route path="/manage" element={<Manage/>}/>
         <Route path="/task" element={<Task/>}/>
         <Route path="/condition" element={<Condition/>}/>

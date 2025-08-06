@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import './home.css';
-import { Home, LayoutDashboard, User, LifeBuoy, Users, Gamepad, Lock, Handshake, Info, ClipboardList, Gift } from 'lucide-react';
-import DashboardPage from './Dashboard.jsx';
+import { Home, User, LifeBuoy, Users, Gamepad, Lock, Handshake, Info, ClipboardList, Gift } from 'lucide-react';
+
 import LeaderPage from './leader.jsx';
 import ProfilePage from './profile.jsx';
 import SupportPage from './SupportPage.jsx';
@@ -1009,9 +1009,7 @@ const CommonHeader = ({ currentPage, setCurrentPage }) => {
           <span className={currentPage === 'home' ? 'active' : ''} onClick={() => setCurrentPage('home')}>
             <Home size={20} /> Home
           </span>
-          <span className={currentPage === 'dashboard' ? 'active' : ''} onClick={() => setCurrentPage('dashboard')}>
-            <LayoutDashboard size={20} /> Dashboard
-          </span>
+          
           <span className={currentPage === 'profile' ? 'active' : ''} onClick={() => setCurrentPage('profile')}>
             <User size={20} /> Profile
           </span>
@@ -1428,9 +1426,7 @@ export default function App() {
       case 'home':
         content = <HomePageContent setCurrentPage={setCurrentPage} currentPage={currentPage} />;
         break;
-      case 'dashboard':
-        content = <DashboardPage onBack={handleBackToHome} />;
-        break;
+      
       case 'profile':
         content = <ProfilePage onBack={handleBackToHome} />;
         break;
