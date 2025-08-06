@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import './home.css';
 import { Home, LayoutDashboard, User, LifeBuoy, Users, Gamepad, Lock, Handshake, Info, ClipboardList, Gift } from 'lucide-react';
 import DashboardPage from './Dashboard.jsx';
+import LeaderPage from './leader.jsx';
 import ProfilePage from './profile.jsx';
 import SupportPage from './SupportPage.jsx';
 import ReferEarnPage from './refer.jsx';
@@ -27,7 +28,7 @@ const renderStars = (rating) => {
 };
 
 // Gradient Definitions
-const gradient1 = 'linear-gradient(to bottom right, #00C0FF, #8A2BE2, #4CAF50, #C71585)';
+const gradient1 = 'linear-gradient(to bottom right, #d400ffff, #00C0FF)';
 const gradient2 = 'linear-gradient(to bottom right, #00BFFF, #32CD32, #FFD700)';
 
 // Data for Offer Partners
@@ -463,7 +464,7 @@ const getCategoryIcon = (categoryId) => {
         </svg>
       );
     case 'games':
-      return <Gamepad size={24} />;
+      return <img src="/icon17.png" alt="Games" style={{ width: 24, height: 24 }} />;
     case 'watch-videos':
       return (
         <svg xmlns="http://www.w3.org/24/24" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-play-square">
@@ -530,12 +531,12 @@ function TaskCard({ task, onClick }) {
           className="task-icon"
           onError={(e) => e.target.src = 'https://placehold.co/40x40/808080/FFFFFF?text=I'}
         />
-        {task.type === 'GAME' && !task.isPremium && (
+        {/* {task.type === 'GAME' && !task.isPremium && (
           <div className="game-icon-badge">
             <Gamepad size={14} />
             <span>GAME</span>
           </div>
-        )}
+        )} */}
       </div>
 
       <div className="task-card-details-main">
@@ -622,8 +623,8 @@ function GameCardComponent({ game, cardSize, gradient, handleShowButtonClick }) 
         
       </div>
       {game.type === 'GAME' && (
-          <div className="game-icon-badge"> {/* Moved here */}
-            <Gamepad size={14} />
+          <div className="game-icon-badge">
+            {/* <img src="/icon17.png" alt="Game" style={{ width: 15, height: 15 }} /> */}
             <span>GAME</span>
           </div>
         )}
@@ -958,31 +959,91 @@ function TasksListingPage({ onBack, initialCategory = 'all' }) {
     </div>
   );
 }
+const NotificationBar = () => {
+  const notifications = [
+    { name: "Naimasfak", amount: "0.48", platform: "POLL.FY", avatar: "https://i.pravatar.cc/40?img=1", bg: "#1E90FF" },
+    { name: "Kambuh", amount: "71", platform: "AYET", avatar: "https://i.pravatar.cc/40?img=2", bg: "#20B2AA" },
+    { name: "rodolf", amount: "473", platform: "ADGATE", avatar: "https://i.pravatar.cc/40?img=3", bg: "#008080" },
+    { name: "gyyttrtt", amount: "225", platform: "ADGATE", avatar: "https://i.pravatar.cc/40?img=4", bg: "#00CED1" },
+    { name: "exigible", amount: "262", platform: "ADGATE", avatar: "https://i.pravatar.cc/40?img=5", bg: "#32CD32" },
+    { name: "exigible", amount: "225", platform: "ADGATE", avatar: "https://i.pravatar.cc/40?img=6", bg: "#32CD32" },
+    { name: ".", amount: "1200", platform: "REVENUEWALL", avatar: "https://i.pravatar.cc/40?img=7", bg: "#FF8C00" },
+    { name: "LTC", amount: "861", platform: "WITHDRAWAL", avatar: "https://i.pravatar.cc/40?img=8", bg: "#778899" },
+    { name: "LTC", amount: "473", platform: "WITHDRAWAL", avatar: "https://i.pravatar.cc/40?img=9", bg: "#708090" },
+  ];
+
+  return (
+    <div className="notification-bar">
+      <div className="notification-scroll">
+          {notifications.map((item, idx) => (
+            <div key={idx} className="notification-card">
+              <div className="notif-left">
+                <img src={item.avatar} alt={item.name} className="notif-avatar" />
+                <div className="notif-text">
+                  <div className="notif-header">
+                    <div className="notif-name">{item.name}</div>
+                    <div className="notif-amount">{item.amount}</div> {/* ✅ moved right here */}
+                  </div>
+                  <div className="notif-tag">{item.platform}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+      </div>
+    </div>
+  );
+
+};
+
 
 // Common Header Component
 const CommonHeader = ({ currentPage, setCurrentPage }) => {
   return (
     <header className="home-header">
-      <div className="home-logo">GamePro</div>
-      <nav className="home-nav">
-        <span className={currentPage === 'home' ? 'active' : ''} onClick={() => setCurrentPage('home')}>
-          <Home size={20} /> Home
-        </span>
-        <span className={currentPage === 'dashboard' ? 'active' : ''} onClick={() => setCurrentPage('dashboard')}>
-          <LayoutDashboard size={20} /> Dashboard
-        </span>
-        <span className={currentPage === 'profile' ? 'active' : ''} onClick={() => setCurrentPage('profile')}>
-          <User size={20} /> Profile
-        </span>
-        <span className={currentPage === 'support' ? 'active' : ''} onClick={() => setCurrentPage('support')}>
-          <LifeBuoy size={20} /> Support
-        </span>
-        <span className={currentPage === 'refer' ? 'active' : ''} onClick={() => setCurrentPage('refer')}>
-          <Users size={20} /> Refer & Earn
-        </span>
-      </nav>
+      <div className="home-header-left">
+        <div className="home-logo">
+          <img src="/icon20.png" alt="GamePro Logo" style={{ width: '120px', height: 'auto' }} />
+        </div>
+
+        <nav className="home-nav">
+          <span className={currentPage === 'home' ? 'active' : ''} onClick={() => setCurrentPage('home')}>
+            <Home size={20} /> Home
+          </span>
+          <span className={currentPage === 'dashboard' ? 'active' : ''} onClick={() => setCurrentPage('dashboard')}>
+            <LayoutDashboard size={20} /> Dashboard
+          </span>
+          <span className={currentPage === 'profile' ? 'active' : ''} onClick={() => setCurrentPage('profile')}>
+            <User size={20} /> Profile
+          </span>
+          <span className={currentPage === 'support' ? 'active' : ''} onClick={() => setCurrentPage('support')}>
+            <LifeBuoy size={20} /> Support
+          </span>
+          <span className={currentPage === 'refer' ? 'active' : ''} onClick={() => setCurrentPage('refer')}>
+            <Users size={20} /> Refer&earn
+          </span>
+          <span className={currentPage === 'leader' ? 'active' : ''} onClick={() => setCurrentPage('leader')}>
+            <Users size={20} /> Leaderboard
+          </span>
+        </nav>
+      </div>
+
+      {/* New Right Section: Balance + Username */}
+      <div className="home-header-right">
+        <div className="user-balance">
+          <span className="balance-amount">$ 0</span>
+        </div>
+        <div className="user-profile">
+          <div className="user-avatar">
+            <img src="/icon21.png" alt="User Avatar" width={24} height={24} />
+          </div>
+          <span className="user-name">shivama</span>
+        </div>
+      </div>
     </header>
   );
+ 
+
+
 };
 
 function HomePageContent({ setCurrentPage, currentPage }) {
@@ -1041,6 +1102,7 @@ function HomePageContent({ setCurrentPage, currentPage }) {
   return (
      <div className="home-container">
       <main className="home-main-content">
+        <NotificationBar />
         {homePageSections.map((category) => {
           const sectionId = `section-${category.title.replace(/\s/g, '-')}`;
           const isExpanded = expandedSections[category.title];
@@ -1048,8 +1110,8 @@ function HomePageContent({ setCurrentPage, currentPage }) {
             <section key={category.title} className="game-section" id={sectionId}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                 <h2 className="section-title-with-icon">
-                    {category.title === 'Gaming Offers' && <Gamepad size={24} />}
-                    {category.title === 'Other Offers' && <Gift size={24} />}
+                    {category.title === 'Gaming Offers'}
+                    {category.title === 'Other Offers'}
                     {category.title}
                 </h2>
                 <button
@@ -1116,7 +1178,7 @@ function HomePageContent({ setCurrentPage, currentPage }) {
         <section className="featured-surveys-section game-section">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
             <h2 className="featured-surveys-title-with-icon">
-                <ClipboardList size={24} /> Featured Surveys
+                Featured Surveys
             </h2>
             <button
               className="view-all-button"
@@ -1328,9 +1390,9 @@ function HomePageContent({ setCurrentPage, currentPage }) {
         {/* Offer Partners Section */}
         <section className="offer-partners-section game-section">
           <h2 className="offer-partners-title">
-            <Handshake size={24} />
+            
             Offer Partners
-            <Info size={16} />
+            
           </h2>
           <div className="carousel-wrapper">
             <button className="scroll-btn left" onClick={() => scrollLeft('Offer Partners')}>&lt;</button>
@@ -1371,6 +1433,9 @@ export default function App() {
         break;
       case 'profile':
         content = <ProfilePage onBack={handleBackToHome} />;
+        break;
+      case 'leader':
+        content = <LeaderPage onBack={handleBackToHome} />;
         break;
       case 'support':
         content = <SupportPage onBack={handleBackToHome} />;

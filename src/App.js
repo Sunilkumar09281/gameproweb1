@@ -13,6 +13,7 @@ import Manage from './components/manage';
 import Condition from './components/condition';
 import Refer from './components/refer';
 import OurOffer from './components/OurOffer';
+import LeaderPage from './components/leader';
 
 import Task from './components/task.jsx';
  // Import the Support component
@@ -33,6 +34,7 @@ function App() {
         <Route path="/our-offer" element={<OurOffer />} />
         <Route path="/dash" element={<Dashpage />} />
         <Route path="/earn" element={<Earnpage />} />
+        <Route path="/leader" element={<LeaderPage />} />
       </Routes>
     </Router>
   );
