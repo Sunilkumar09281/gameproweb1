@@ -123,7 +123,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden">
+    <div className="min-h-screen bg-[#1a202c] text-white relative overflow-hidden"> {/* Changed background color here */}
       {/* Cosmic background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-10 left-10 w-1 h-1 bg-white rounded-full opacity-60"></div>
@@ -153,7 +153,7 @@ function App() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 mx-auto px-6 py-8"> {/* Removed 'container' class to allow wider expansion */}
+      <div className="relative z-10 mx-auto px-6 py-8">
         {/* Title */}
         <div className="text-center mb-12">
           <h1 className="text-6xl md:text-7xl font-bold text-yellow-400 mb-6 tracking-wider">
