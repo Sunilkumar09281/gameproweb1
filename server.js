@@ -7,8 +7,8 @@ const PORT = process.env.PORT || 3000;
 // Serve static files from the React build
 app.use(express.static(path.join(__dirname, 'build')));
 
-// Use a regex-safe wildcard route handler for client-side routing
-app.get('/*', function (req, res) {
+// Handle all other routes - FIX for path-to-regexp error
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
